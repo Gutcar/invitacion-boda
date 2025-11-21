@@ -1,16 +1,108 @@
 ---
-
+import Layout from '../layouts/Layout.astro'
+import NamesHeader from '../components/NamesHeader.astro'
+import ItalicText from '../components/ItalicText.astro'
+import DateTime from '../components/DateTime.astro'
+import Button from '../components/Button.astro'
 ---
 
-<html lang="en">
-	<head>
-		<meta charset="utf-8" />
-		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-		<meta name="viewport" content="width=device-width" />
-		<meta name="generator" content={Astro.generator} />
-		<title>Astro</title>
-	</head>
-	<body>
-		<h1>Astro</h1>
-	</body>
-</html>
+<Layout>
+  <!-- Flores superiores -->
+  <div class="absolute md:-top-15 md:-right-18 -top-15 -right-10 z-20 w-4/7">
+    <img
+      class=""
+      src="img/flores-esquina-superior.png"
+      alt="flores-esquina-superior"
+    />
+  </div>
+
+  <!-- Contenedor principal CON flores incluidas -->
+  <div class="relative">
+    <!-- Contenido principal -->
+    <div class="relative z-30 pb-20">
+      <div class="md:ms-15 md:pt-10 ms-10 pt-10 pb-4">
+        <ItalicText>Estas invitado</ItalicText>
+        <ItalicText><span class="ms-10"></span>a nuestra boda</ItalicText>
+      </div>
+      <NamesHeader />
+    </div>
+
+    <!-- Flores inferiores - DENTRO del mismo contenedor relativo -->
+    <div
+      class="absolute md:-bottom-62 md:-left-30 z-20 md:w-10/11 -bottom-47 -left-22 md:rotate-none rotate-11 w-11/10"
+    >
+      <img
+        src="img/flores-esquina-inferior.png"
+        alt="flores-esquina-inferior"
+      />
+    </div>
+  </div>
+
+  <!-- Contenido secundario - FUERA del contenedor principal -->
+  <div class="relative z-30 pb-15 md:pt-30 pt-28">
+    <div class="m-auto px-15 pt-20 pb-4 text-center">
+      <ItalicText
+        >Queremos invitarte a ser parte de este día tan importante de nuestras
+        vidas</ItalicText
+      >
+    </div>
+  </div>
+
+  <!-- Contenido de Fecha y Hora -->
+  <div class="relative z-30 m-auto px-5 md:px-15 pb-15">
+    <DateTime />
+  </div>
+
+  <!-- Contenido de Direccion y Mapa -->
+  <div class="relative z-30 pb-15">
+    <div class="m-auto px-15 text-center text-2xl text-shadow-sm">
+      <p class="font-bold">El Ají Seco del Sur</p>
+      <p>Padre Las Casas 511, Hualpén, Bío Bío</p>
+    </div>
+
+    <div class="m-auto px-15 flex justify-around pt-10 flex-wrap gap-y-6">
+      <!-- Boton para mapa -->
+      <Button url="https://maps.app.goo.gl/BjkbK1Vh6zhbweB49">
+        <Fragment slot="nombre">Cómo llegar</Fragment>
+        <Fragment slot="icono">
+          <path
+            fill-rule="evenodd"
+            d="m11.54 22.351.07.04.028.016a.76.76 0 0 0 .723 0l.028-.015.071-.041a16.975 16.975 0 0 0 1.144-.742 19.58 19.58 0 0 0 2.683-2.282c1.944-1.99 3.963-4.98 3.963-8.827a8.25 8.25 0 0 0-16.5 0c0 3.846 2.02 6.837 3.963 8.827a19.58 19.58 0 0 0 2.682 2.282 16.975 16.975 0 0 0 1.145.742ZM12 13.5a3 3 0 1 0 0-6 3 3 0 0 0 0 6Z"
+            clip-rule="evenodd"></path>
+        </Fragment>
+      </Button>
+
+      <!-- Boton para lista de novios -->
+      <Button
+        url="https://novios.falabella.com/info-evento/evento?codigoEvento=2102502"
+      >
+        <Fragment slot="nombre">Lista de novios</Fragment>
+        <Fragment slot="icono">
+          <path
+            d="M9.375 3a1.875 1.875 0 0 0 0 3.75h1.875v4.5H3.375A1.875 1.875 0 0 1 1.5 9.375v-.75c0-1.036.84-1.875 1.875-1.875h3.193A3.375 3.375 0 0 1 12 2.753a3.375 3.375 0 0 1 5.432 3.997h3.943c1.035 0 1.875.84 1.875 1.875v.75c0 1.036-.84 1.875-1.875 1.875H12.75v-4.5h1.875a1.875 1.875 0 1 0-1.875-1.875V6.75h-1.5V4.875C11.25 3.839 10.41 3 9.375 3ZM11.25 12.75H3v6.75a2.25 2.25 0 0 0 2.25 2.25h6v-9ZM12.75 12.75v9h6.75a2.25 2.25 0 0 0 2.25-2.25v-6.75h-9Z"
+          ></path>
+        </Fragment>
+      </Button>
+    </div>
+  </div>
+
+  <!-- Contenido texto -->
+  <div class="relative z-30 pt-8 md:pb-45 pb-55">
+    <!-- Contenido principal -->
+    <div class="relative z-30 m-auto text-center">
+      <p
+        class="md:text-7xl text-6xl text-shadow-sm"
+        style="font-family: var(--font-family-names)"
+      >
+        ¡Te esperamos!
+      </p>
+    </div>
+  </div>
+
+  <!-- Flores inferiores - DENTRO del mismo contenedor relativo -->
+  <div
+    class="absolute md:-bottom-18 md:-left-28 -bottom-15 -left-22 z-20 w-full"
+  >
+    <img src="img/flores-footer.png" alt="flores-footer" class="md:w-6/8" />
+  </div>
+</Layout>

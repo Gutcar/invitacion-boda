@@ -1,0 +1,51 @@
+---
+import '../styles/global.css'
+---
+
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="utf-8" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.png" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0, maximum-scale=1.0"
+    />
+    <meta name="generator" content={Astro.generator} />
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Fleur+De+Leah&family=Playfair+Display:ital@1&family=Playfair:ital,opsz,wght@0,5..1200,300..900;1,5..1200,300..900&display=swap"
+      rel="stylesheet"
+    />
+
+    <title>Estas invitado a nuestra boda</title>
+  </head>
+
+  <body
+    class="bg-(--general-background-color) min-h-screen"
+    style="font-family: var(--font-family-global)"
+  >
+    <main
+      class="w-full max-w-2xl mx-auto min-h-screen bg-white shadow-lg overflow-hidden relative bg-cover bg-center bg-no-repeat"
+      style="background-image: url('img/fondo-con-textura.jpg');"
+    >
+      <!-- Contenido -->
+      <div class="relative h-full text-(--general-text-color)">
+        <slot />
+      </div>
+
+      <!-- 
+      <div
+        class="w-full min-h-screen bg-white shadow-lg overflow-hidden absolute inset-0 z-25 bg-cover bg-center bg-no-repeat opacity-10"
+        style="background-image: url('img/fondo-con-textura.jpg');"
+      >
+      </div>
+
+      Overlay sutil para mejor contraste 
+      <div class="absolute inset-0 bg-(--invitation-color)/20"></div>
+      -->
+    </main>
+  </body>
+</html>

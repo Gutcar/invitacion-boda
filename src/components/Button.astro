@@ -1,0 +1,28 @@
+---
+const { url } = Astro.props
+---
+
+<a
+  class="group relative inline-flex items-center overflow-hidden border border-(--button-hover) px-8 py-3 min-w-4/10 shadow-sm"
+  target="_blank"
+  href={url}
+>
+  <span
+    class="absolute inset-y-0 left-0 w-95/100 text-(--button-color-hover) bg-(--button-hover) transition-all group-hover:w-5/100"
+  ></span>
+
+  <svg
+    class="relative transition-colors group-hover:text-(--button-hover) size-6 rtl:rotate-180 text-(--button-color-hover)"
+    xmlns="http://www.w3.org/2000/svg"
+    fill="currentColor"
+    viewBox="0 0 24 24"
+  >
+    <slot name="icono" />
+  </svg>
+
+  <span
+    class="relative ps-2 text-xl font-bold text-(--button-color-hover) transition-colors group-hover:text-(--button-hover)"
+  >
+    <slot name="nombre" />
+  </span>
+</a>

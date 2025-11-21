@@ -1,0 +1,39 @@
+@import "tailwindcss";
+
+:root {
+	--general-text-color: #593018;/*#2E2923;*/
+	--general-background-color: #2E2923;
+	--invitation-color: #ff7b2e;/*#F7F6F0;*/
+  --button-hover: #593018;
+  --button-color-hover: #F7F6F0;
+  --button-color: #593018;
+  --font-family-global: "Playfair", serif;
+  --font-family-names: "Fleur De Leah", cursive;
+
+}
+
+.font-fleur-de-leah-regular {
+  font-family: "Fleur De Leah", cursive;
+  font-weight: 400;
+  font-style: normal;
+}
+
+
+.font-playfair-display {
+  font-family: "Playfair Display", serif;
+  font-optical-sizing: auto;
+}
+
+.font-playfair {
+  font-family: "Playfair", serif;
+  font-optical-sizing: auto;
+  font-variation-settings:
+    "wdth" 100;
+}
+
+.img-hor-vert {
+    -webkit-transform: scale(-1, -1);
+    -moz-transform: scale(-1, -1);
+    -o-transform: scale(-1, -1);
+    transform: scale(1, -1);
+}
