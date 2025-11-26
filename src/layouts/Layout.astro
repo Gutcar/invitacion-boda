@@ -1,5 +1,13 @@
 ---
 import '../styles/global.css'
+
+import { getImage } from 'astro:assets'
+import imagenDeFondo from '../img/fondo-con-textura.jpg'
+
+// Obtiene el objeto de la imagen optimizada WebP
+const imagenOptimizada = await getImage({ src: imagenDeFondo, format: 'webp' })
+
+import LoadingAnimation from '../components/LoadingAnimation.astro'
 ---
 
 <!doctype html>
@@ -27,9 +35,12 @@ import '../styles/global.css'
     class="bg-(--general-background-color) min-h-screen"
     style="font-family: var(--font-family-global)"
   >
+    <LoadingAnimation />
+
     <main
+      id="main-content"
       class="w-full max-w-2xl mx-auto min-h-screen bg-white shadow-lg overflow-hidden relative bg-cover bg-center bg-no-repeat"
-      style="background-image: url('img/fondo-con-textura.jpg');"
+      style={`background-image: url(${imagenOptimizada.src});`}
     >
       <!-- Contenido -->
       <div class="relative h-full text-(--general-text-color)">
@@ -47,5 +58,67 @@ import '../styles/global.css'
       <div class="absolute inset-0 bg-(--invitation-color)/20"></div>
       -->
     </main>
+
+    <script>
+      document.addEventListener('DOMContentLoaded', function () {
+        const loadingScreen = document.getElementById('loading-screen')
+        const mainContent = document.getElementById('main-content')
+        const images = document.querySelectorAll('picture img, img')
+        let loadedImages = 0
+        const totalImages = images.length
+
+        // Function to check if all fonts are loaded
+        function checkFontsLoaded() {
+          // Replace 'Your Google Font Name' with the actual font family name you are using.
+          return (
+            document.fonts.check('1em "Playfair"') &&
+            document.fonts.check('1em "Fleur De Leah"')
+          )
+        }
+
+        // Function to show content when everything is ready
+        function showContent() {
+          loadingScreen.style.display = 'none'
+          mainContent.classList.add('content-loaded')
+        }
+
+        // Function to check both images and fonts
+        function checkAllAssets() {
+          const fontsLoaded = checkFontsLoaded()
+          const imagesLoaded = totalImages === 0 || loadedImages === totalImages
+
+          if (fontsLoaded && imagesLoaded) {
+            setTimeout(showContent, 300) // Small delay for a smoother transition
+          } else if (!fontsLoaded) {
+            // If fonts aren't loaded yet, check again in a short while
+            setTimeout(checkAllAssets, 100)
+          }
+          // If only images are missing, the existing imageLoaded function will handle it.
+        }
+
+        // --- Your existing image loading logic, modified ---
+        function imageLoaded() {
+          loadedImages++
+          checkAllAssets() // Check progress each time an image loads
+        }
+
+        if (totalImages === 0) {
+          // If there are no images, start checking for fonts immediately
+          setTimeout(checkAllAssets, 100)
+        } else {
+          images.forEach((img) => {
+            if (img.complete) {
+              imageLoaded()
+            } else {
+              img.addEventListener('load', imageLoaded)
+              img.addEventListener('error', imageLoaded)
+            }
+          })
+        }
+
+        // Timeout de seguridad (Safety Timeout)
+        setTimeout(showContent, 5000)
+      })
+    </script>
   </body>
 </html>
